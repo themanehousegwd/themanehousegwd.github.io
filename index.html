@@ -131,6 +131,10 @@
   .gift-card h2{font-size:clamp(1.8rem,3.6vw,2.4rem);margin:8px 0 12px}
   .gift-card p{color:var(--muted);margin-bottom:22px;font-size:.9rem}
   @media(max-width:720px){.gift-card{grid-template-columns:1fr;text-align:center;padding:32px 24px}.gift-card img{margin:0 auto;width:140px}}
+  .promo{border:1.5px dashed var(--pink);border-radius:14px;padding:16px 20px;margin-bottom:22px;background:rgba(244,163,182,.08)}
+  .promo .tag{display:inline-block;background:var(--pink);color:#111;font-size:.7rem;font-weight:600;letter-spacing:.2em;padding:4px 12px;border-radius:999px;margin-bottom:8px}
+  .promo strong{display:block;font-family:'Cormorant Garamond',serif;font-size:1.5rem;letter-spacing:.08em;color:var(--cream);line-height:1.2}
+  .promo span{display:block;color:var(--beige);font-size:.82rem;margin-top:6px}
 </style>
 </head>
 <body>
@@ -206,6 +210,11 @@
           <div class="eyebrow">Gift Certificates</div>
           <h2>Give the gift of great hair</h2>
           <p>Treat someone to a fresh cut, color or style. Gift certificates are perfect for birthdays, holidays, teachers and anyone who deserves a little pampering.</p>
+          <div class="promo" id="holiday-promo">
+            <div class="tag">Holiday Bonus</div>
+            <strong>Get an extra $50 for every $100</strong>
+            <span>A $150 gift for just $100. Ends at midnight on Christmas Eve.</span>
+          </div>
           <a class="btn btn-primary" href="https://square.link/u/vrdgAP6C" target="_blank" rel="noopener">Buy a Gift Certificate</a>
         </div>
       </div>
@@ -278,6 +287,7 @@
   <p>Saturdays by appointment · <a href="https://themanehousegwd.square.site" target="_blank" rel="noopener">Book online</a></p>
   <p style="margin-top:14px;opacity:.6">© <span id="yr">2026</span> The Mane House</p>
 </footer>
+<script>if(new Date()>=new Date('2026-12-25T00:00:00-06:00')){var p=document.getElementById('holiday-promo');if(p)p.remove()}</script>
 <script>document.getElementById('yr').textContent=new Date().getFullYear()</script>
 </body>
 </html>
