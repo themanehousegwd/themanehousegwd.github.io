@@ -43,7 +43,8 @@
   "logo": "https://themanehousegwd.github.io/assets/logo-black-512.png",
   "email": "themanehousegwd@gmail.com",
   "telephone": "+1-803-365-5697",
-  "address": {"@type": "PostalAddress", "addressLocality": "Greenwood", "addressRegion": "AR", "addressCountry": "US"},
+  "address": {"@type": "PostalAddress", "streetAddress": "1405 W Center St Ste 108", "addressLocality": "Greenwood", "addressRegion": "AR", "postalCode": "72936", "addressCountry": "US"},
+  "geo": {"@type": "GeoCoordinates", "latitude": 35.2193815, "longitude": -94.2790551},
   "areaServed": ["Greenwood, AR", "Fort Smith, AR", "Barling, AR", "Hackett, AR", "Mansfield, AR", "Huntington, AR", "Waldron, AR"],
   "url": "https://themanehousegwd.github.io/",
   "potentialAction": {"@type": "ReserveAction", "target": "https://themanehousegwd.square.site"},
@@ -161,6 +162,12 @@
   .promo .tag{display:inline-block;background:var(--pink);color:#111;font-size:.7rem;font-weight:600;letter-spacing:.2em;padding:4px 12px;border-radius:999px;margin-bottom:8px}
   .promo strong{display:block;font-family:'Cormorant Garamond',serif;font-size:1.5rem;letter-spacing:.08em;color:var(--cream);line-height:1.2}
   .promo span{display:block;color:var(--beige);font-size:.82rem;margin-top:6px}
+  .map-wrap{max-width:900px;margin:40px auto 0;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--card)}
+  .map-wrap iframe{display:block;width:100%;height:380px;border:0}
+  .map-info{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding:20px 24px}
+  .map-info .addr{font-size:.88rem;color:var(--beige)}
+  .map-info .btn{padding:12px 24px}
+  @media(max-width:520px){.map-wrap iframe{height:300px}.map-info{justify-content:center;text-align:center}}
 </style>
 </head>
 <body>
@@ -265,10 +272,17 @@
       <div class="head">
         <div class="eyebrow">Service Area</div>
         <h2>Fort Smith to Waldron</h2>
-        <p>The suite is in Greenwood, an easy drive from anywhere in the River Valley and western Arkansas.</p>
+        <p>The suite is on West Center Street in Greenwood, an easy drive from anywhere in the River Valley and western Arkansas.</p>
       </div>
       <div class="towns">
         <span>Fort Smith</span><span>Barling</span><span class="home">Greenwood</span><span>Hackett</span><span>Mansfield</span><span>Huntington</span><span>Waldron</span>
+      </div>
+      <div class="map-wrap">
+        <iframe src="https://www.google.com/maps?q=The%20Mane%20House%2C%201405%20W%20Center%20St%20Ste%20108%2C%20Greenwood%2C%20AR%2072936&amp;output=embed" title="Map to The Mane House in Greenwood, AR" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        <div class="map-info">
+          <div class="addr">The Mane House · 1405 W Center St, Ste 108, Greenwood, AR 72936</div>
+          <a class="btn btn-primary" href="https://maps.app.goo.gl/porsQ29UWB6VzHz97" target="_blank" rel="noopener">Get Directions</a>
+        </div>
       </div>
     </div>
   </section>
@@ -282,7 +296,7 @@
       <div class="steps">
         <div class="step"><h3>Pick a service</h3><p>Browse the menu and choose a Saturday time on the booking page.</p></div>
         <div class="step"><h3>Questions? Text.</h3><p>Not sure what to book? Text <a href="sms:+18033655697">803-365-5697</a>. This number is text only.</p></div>
-        <div class="step"><h3>Get the address</h3><p>The suite address in Greenwood comes with your booking confirmation.</p></div>
+        <div class="step"><h3>Find the suite</h3><p>1405 W Center St, Ste 108, Greenwood, AR 72936. <a href="https://maps.app.goo.gl/porsQ29UWB6VzHz97" target="_blank" rel="noopener">Get directions</a>.</p></div>
       </div>
       <div class="center"><a class="btn btn-primary" href="https://themanehousegwd.square.site" target="_blank" rel="noopener">Book on Square</a></div>
     </div>
@@ -297,6 +311,7 @@
       <div class="contact-grid">
         <a href="sms:+18033655697"><small>Text only</small><span>803-365-5697</span></a>
         <a href="mailto:themanehousegwd@gmail.com"><small>Email</small><span class="sm">themanehousegwd@gmail.com</span></a>
+        <a href="https://maps.app.goo.gl/porsQ29UWB6VzHz97" target="_blank" rel="noopener"><small>Location</small><span class="sm">1405 W Center St, Ste 108</span></a>
         <a href="https://www.instagram.com/the.mane.girl" target="_blank" rel="noopener"><small>Instagram</small><span>@the.mane.girl</span></a>
         <a href="https://www.facebook.com/share/1Fh38QJfjN/" target="_blank" rel="noopener"><small>Facebook</small><span>The Mane House</span></a>
         <a href="https://square.link/u/vrdgAP6C" target="_blank" rel="noopener"><small>Gift certificates</small><span>Buy online</span></a>
