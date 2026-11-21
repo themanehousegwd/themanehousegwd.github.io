@@ -169,12 +169,19 @@
   .map-info .btn{padding:12px 24px}
   @media(max-width:520px){.map-wrap iframe{height:300px}.map-info{justify-content:center;text-align:center}}
   .gallery{background:var(--bg)}
-  .gal-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
-  .gal-grid figure{margin:0;border-radius:14px;overflow:hidden;background:var(--card);aspect-ratio:4/5}
-  .gal-grid img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
-  .gal-grid figure:hover img{transform:scale(1.04)}
-  @media(max-width:900px){.gal-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-  @media(max-width:600px){.gal-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}
+  .carousel{position:relative}
+  .gal-track{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:4px}
+  .gal-track::-webkit-scrollbar{display:none}
+  .gal-track figure{flex:0 0 calc((100% - 42px)/4);margin:0;border-radius:14px;overflow:hidden;background:var(--card);aspect-ratio:4/5;scroll-snap-align:start}
+  .gal-track img{width:100%;height:100%;object-fit:cover;display:block}
+  .car-btn{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:0;background:rgba(14,14,14,.75);color:var(--cream);display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(4px);transition:background .15s}
+  .car-btn:hover{background:var(--pink);color:#111}
+  .car-btn.prev{left:-12px}.car-btn.next{right:-12px}
+  .car-dots{display:flex;justify-content:center;gap:8px;margin-top:22px}
+  .car-dots button{width:8px;height:8px;border-radius:50%;border:0;padding:0;background:var(--line);cursor:pointer}
+  .car-dots button.on{background:var(--pink);width:22px;border-radius:999px}
+  @media(max-width:900px){.gal-track figure{flex-basis:calc((100% - 28px)/3)}}
+  @media(max-width:600px){.gal-track{gap:10px}.gal-track figure{flex-basis:72%}.car-btn{display:none}}
   .special{background:var(--bg);padding:70px 0}
   .special-card{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:0;border:1px solid var(--line);border-radius:22px;overflow:hidden;background:linear-gradient(135deg,rgba(244,163,182,.12),rgba(14,90,68,.25))}
   .special-card img{width:100%;height:100%;object-fit:cover;min-height:360px}
@@ -291,7 +298,8 @@
         <h2>Fresh from the chair</h2>
         <p>Color, blonding, dimension and style. See more on Instagram <a href="https://www.instagram.com/the.mane.girl" target="_blank" rel="noopener" style="color:var(--pink)">@the.mane.girl</a>.</p>
       </div>
-      <div class="gal-grid">
+      <div class="carousel">
+        <div class="gal-track" id="galTrack">
         <figure><img src="assets/gallery/work-01.jpg" alt="Long copper brunette waves" loading="lazy" width="900" height="1125"></figure>
         <figure><img src="assets/gallery/work-02.jpg" alt="Long blonde waves" loading="lazy" width="900" height="1125"></figure>
         <figure><img src="assets/gallery/work-03.jpg" alt="Long brunette curls" loading="lazy" width="900" height="1125"></figure>
@@ -304,6 +312,11 @@
         <figure><img src="assets/gallery/work-10.jpg" alt="Golden blonde lived-in color" loading="lazy" width="900" height="1125"></figure>
         <figure><img src="assets/gallery/work-11.jpg" alt="Brunette cut and style" loading="lazy" width="900" height="1125"></figure>
         <figure><img src="assets/gallery/work-12.jpg" alt="Soft blonde shoulder-length style" loading="lazy" width="900" height="1125"></figure>
+        </div>
+        <button class="car-btn prev" type="button" aria-label="Previous photos"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <button class="car-btn next" type="button" aria-label="Next photos"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+      <div class="car-dots" id="galDots"></div>
       </div>
     </div>
   </section>
@@ -398,5 +411,26 @@
 </footer>
 <script>if(new Date()>=new Date('2026-12-25T00:00:00-06:00')){var p=document.getElementById('holiday-promo');if(p)p.remove();var g=document.getElementById('gift-generic');if(g)g.style.display='flex'}</script>
 <script>document.getElementById('yr').textContent=new Date().getFullYear()</script>
+<script>
+(function(){
+  var t=document.getElementById('galTrack'); if(!t) return;
+  var figs=t.querySelectorAll('figure'), dots=document.getElementById('galDots');
+  var prev=document.querySelector('.car-btn.prev'), next=document.querySelector('.car-btn.next');
+  function step(){return figs[0].getBoundingClientRect().width+parseFloat(getComputedStyle(t).columnGap||14);}
+  function idx(){return Math.round(t.scrollLeft/step());}
+  function maxIdx(){return Math.max(0,Math.round((t.scrollWidth-t.clientWidth)/step()));}
+  function go(i){var m=maxIdx(); if(i>m)i=0; if(i<0)i=m; t.scrollTo({left:i*step(),behavior:'smooth'});}
+  function build(){dots.innerHTML='';for(var i=0;i<=maxIdx();i++){var b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Go to photo '+(i+1));(function(n){b.onclick=function(){go(n);pause();};})(i);dots.appendChild(b);}mark();}
+  function mark(){var i=idx();[].forEach.call(dots.children,function(d,n){d.className=n===i?'on':'';});}
+  prev.onclick=function(){go(idx()-1);pause();}; next.onclick=function(){go(idx()+1);pause();};
+  t.addEventListener('scroll',function(){window.requestAnimationFrame(mark);},{passive:true});
+  window.addEventListener('resize',build);
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches, timer=null, held=false;
+  function start(){if(reduce||timer)return;timer=setInterval(function(){if(!held&&!document.hidden)go(idx()+1);},3500);}
+  function pause(){held=true;clearTimeout(t._r);t._r=setTimeout(function(){held=false;},8000);}
+  ['pointerdown','touchstart','wheel','mouseenter'].forEach(function(e){t.addEventListener(e,pause,{passive:true});});
+  build(); start();
+})();
+</script>
 </body>
 </html>
