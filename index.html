@@ -175,6 +175,16 @@
   .gal-grid figure:hover img{transform:scale(1.04)}
   @media(max-width:900px){.gal-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
   @media(max-width:600px){.gal-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}
+  .special{background:var(--bg);padding:70px 0}
+  .special-card{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:0;border:1px solid var(--line);border-radius:22px;overflow:hidden;background:linear-gradient(135deg,rgba(244,163,182,.12),rgba(14,90,68,.25))}
+  .special-card img{width:100%;height:100%;object-fit:cover;min-height:360px}
+  .special-body{padding:48px 44px;display:flex;flex-direction:column;justify-content:center;gap:14px}
+  .special-body .tag{align-self:flex-start;background:var(--pink);color:#111;font-size:.72rem;font-weight:600;letter-spacing:.22em;padding:6px 14px;border-radius:999px}
+  .special-body h2{font-size:clamp(2rem,4.4vw,3rem)}
+  .special-body h2 span{color:var(--pink)}
+  .special-body p{color:var(--beige);max-width:30em}
+  .special-body .btn{align-self:flex-start;margin-top:8px}
+  @media(max-width:760px){.special-card{grid-template-columns:1fr}.special-card img{min-height:0;aspect-ratio:4/3}.special-body{padding:32px 26px;text-align:center;align-items:center}.special-body .tag,.special-body .btn{align-self:center}}
 </style>
 </head>
 <body>
@@ -183,6 +193,7 @@
   <div class="wrap nav">
     <a href="#top" aria-label="The Mane House home"><img src="assets/logo-cream.png" alt="The Mane House logo"></a>
     <ul>
+      <li class="hide-sm"><a href="#holiday-special">Holiday Special</a></li>
       <li class="hide-sm"><a href="#services">Services</a></li>
       <li class="hide-sm"><a href="#gallery">Gallery</a></li>
       <li class="hide-sm"><a href="#discounts">Discounts</a></li>
@@ -211,6 +222,20 @@
   </section>
 
   <div class="strip">Now booking <strong>Saturdays</strong>. More days are coming soon and will be announced on Instagram and Facebook.</div>
+
+  <section class="special" id="holiday-special">
+    <div class="wrap">
+      <div class="special-card">
+        <img src="assets/holiday-special.jpg" alt="Glossy dark brunette hair after a gloss, trim and blowout" width="900" height="1125">
+        <div class="special-body">
+          <div class="tag">Holiday Special</div>
+          <h2><span>$50</span> gloss, trim + blowout</h2>
+          <p>Get holiday-ready with a shine-boosting gloss, a fresh trim and a smooth blowout, all for $50.</p>
+          <a class="btn btn-primary" href="https://themanehousegwd.square.site" target="_blank" rel="noopener">Book the Holiday Special</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <section id="services">
     <div class="wrap">
@@ -278,9 +303,10 @@
           <div class="promo" id="holiday-promo">
             <div class="tag">Holiday Bonus</div>
             <strong>Get an extra $50 for every $100</strong>
-            <span>A $150 gift for just $100. Ends at midnight on Christmas Eve.</span>
+            <span>A $150 gift for just $100. No limit. Ends at midnight on Christmas Eve.</span>
           </div>
           <a class="btn btn-primary" href="https://square.link/u/vrdgAP6C" target="_blank" rel="noopener">Buy a Gift Certificate</a>
+          <p style="font-size:.75rem;margin:14px 0 0">Certificates expire one year after purchase.</p>
         </div>
       </div>
     </div>
