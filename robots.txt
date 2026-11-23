@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://themanehousegwd.github.io/sitemap.xml
+Sitemap: https://themanehousegwd.com/sitemap.xml
